@@ -1,0 +1,70 @@
+<resources>
+    <!-- app name -->
+    <string name="app_name">My Catalog</string>
+
+    <!-- layout -->
+    <!-- main -->
+    <string name="login_form">LOGIN FORM</string>
+    <string name="et_email">Email</string>
+    <string name="et_password">Password</string>
+
+    <!-- profile -->
+    <string name="my_profile">My Profile</string>
+    <string name="txt_email">EMAIL :</string>
+    <string name="tv_email">Email Empty</string>
+    <string name="strike_1">Line</string>
+    <string name="txt_fullname">FULL NAME :</string>
+    <string name="tv_full_name">Full Name Empty</string>
+    ``
+    <string name="strike_2">Line</string>
+    <string name="txt_gender">GENDER :</string>
+    <string name="tv_gender">Gender Empty</string>
+    <string name="strike_3">Line</string>
+    <string name="txt_phone">PHONE NUMBER :</string>
+    <string name="tv_phone">Phone number Empty</string>
+    <string name="strike_4">Line</string>
+    <string name="txt_child">CHILD :</string>
+    <string name="tv_child">Child Empty</string>
+    <string name="strike_5">Line</string>
+    <string name="txt_education">EDUCATION :</string>
+    <string name="tv_education">Last Education Empty</string>
+    <string name="strike_6">Line</string>
+
+    <!-- form -->
+    <string name="form">EDIT PROFILE</string>
+    <string name="et_fullname">Input Full Name</string>
+    <string name="et_gender">Input Gender</string>
+    <string name="et_phone">Input Phone Number</string>
+    <!--    <string name="et_child">Input How Many Children</string>-->
+    <!--    <string name="sp_education">Select last education</string>-->
+
+
+    <!-- button -->
+    <string name="button_login">Login</string>
+    <string name="button_form">Edit</string>
+    <string name="button_save">Save</string>
+    <string name="profile">profile</string>
+    <string name="logout">logout</string>
+    <string name="profile_image">profile image</string>
+    <string name="pick_image">pick image</string>
+    <string name="button_take_picture">take a picture</string>
+    <string name="take_photo">take photo</string>
+    <string name="pilih_gambar">PILIH GAMBAR</string>
+
+
+    <!--    &lt;!&ndash; array spinner &ndash;&gt;-->
+    <!--    <string-array name="pendidikan_terakhir">-->
+    <!--        Select Last Education-->
+    <!--        <item>SD</item>-->
+    <!--        <item>SMP</item>-->
+    <!--        <item>SMA/SMK</item>-->
+    <!--        <item>DIPLOMA</item>-->
+    <!--        <item>S1</item>-->
+    <!--    </string-array>-->
+
+    <!--    &lt;!&ndash;     plurals edit text&ndash;&gt;-->
+    <!--    <plurals name="howManyChildrenInTheFamily">-->
+    <!--        <item quantity="one">%d item out of %d items Selected .</item>-->
+    <!--        <item quantity="other">%d items out of %d items Selected .</item>-->
+    <!--    </plurals>-->
+</resources>
