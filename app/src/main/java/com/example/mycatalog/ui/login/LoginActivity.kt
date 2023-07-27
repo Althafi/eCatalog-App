@@ -30,16 +30,17 @@ class LoginActivity : AppCompatActivity() {
             )
         )[LoginViewModel::class.java].also { viewModel = it }
 
-//        saveEmail(viewModel)
-
         viewModel.userPreferencesFlow.observe(this){profile ->
             if (profile.loginStatus){
+                Toast.makeText(this, profile.loginStatus.toString(), Toast.LENGTH_LONG).show()
+
+            }else{
+
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, EcatalogActivity::class.java).apply {
                 }
                 startActivity(intent)
                 finish()
-
             }
 
         }
@@ -58,7 +59,6 @@ class LoginActivity : AppCompatActivity() {
             } else{
 
                 authLogin()
-                Toast.makeText(this, "email saved", Toast.LENGTH_LONG).show()
 
 
 

@@ -1,5 +1,7 @@
 package com.example.mycatalog.data.model
 
+
+//Menyimpan seluruh data dari GSON API
 data class Product(
     val discountPercentage: Double,
     val thumbnail: String,

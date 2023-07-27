@@ -4,6 +4,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+//untuk mengambil data products dan id product pada API
 interface ApiService {
         @GET("products")
         suspend fun getProducts(

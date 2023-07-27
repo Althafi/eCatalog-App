@@ -2,7 +2,7 @@ package com.example.mycatalog.data.model
 
 import android.net.Uri
 
-
+// Menyimpan data preferences login status dan user profile
 data class Profile(
 
     val loginStatus : Boolean,

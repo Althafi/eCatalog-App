@@ -1,10 +1,7 @@
 package com.example.mycatalog.data.preferences
 
-import android.app.Activity
 import android.content.Context
-import android.database.Cursor
 import android.net.Uri
-import android.provider.MediaStore
 import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
@@ -20,7 +17,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-
+//key untuk memperoleh dan mengupdate dataStore
 object PreferencesKeys{
         val LOGIN = booleanPreferencesKey("LOGIN_STATUS")
         val EMAIL = stringPreferencesKey("EMAIL")
@@ -38,7 +35,7 @@ class UserPreferences(
 ){
     val userPreferencesFlow: Flow<Profile> = userPreferencesStore.data
         .catch { exception ->
-            // dataStore.data throws an IOException when an error is encountered when reading data
+            // untuk menampilkan error selama datastore membaca data
             if (exception is IOException) {
                 emit(emptyPreferences())
             } else {
@@ -46,7 +43,7 @@ class UserPreferences(
             }
         }
         .map { preferences ->
-            // Get our show completed value, defaulting to false if not set:
+            // mengambil nilai dari profile, dengan awalan tidak di set:
             val login = preferences[LOGIN] ?: false
             val email = preferences[EMAIL] ?: ""
             val fullName = preferences[FULL_NAME] ?: ""
@@ -63,15 +60,18 @@ class UserPreferences(
 
 
 
-
+    // untuk memungkinkan memperbarui properti yang ada di dalam fungsi authLogin
     suspend fun authLogin(statusLogin: Boolean, email: String){
+        //untuk menulis data
         userPreferencesStore.edit {preferences ->
             preferences[LOGIN] = statusLogin
             preferences[EMAIL] = email
         }
     }
 
+    // untuk memungkinkan memperbarui properti yang ada di dalam fungsi userProfile
     suspend fun userProfile(fName: String, gender: String, phone: String){
+        //untuk menulis data
         userPreferencesStore.edit {preferences ->
             preferences[FULL_NAME] = fName
             preferences[GENDER] = gender
@@ -80,19 +80,14 @@ class UserPreferences(
         }
     }
 
+    // untuk memungkinkan memperbarui properti yang ada di dalam fungsi setImage
     suspend fun setImage(img: Uri?){
+        //untuk menulis data
         userPreferencesStore.edit { preferences ->
             preferences[IMG_PROFILE] = img.toString()
         }
     }
 
-//    fun getRealPathFromUri(activity: Activity, contentUri: Uri?): String? {
-//        val proj = arrayOf(MediaStore.Images.Media.DATA)
-//        val cursor: Cursor = activity.managedQuery(contentUri, proj, null, null, null)
-//        val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-//        cursor.moveToFirst()
-//        return cursor.getString(column_index)
-//    }
 
 
 

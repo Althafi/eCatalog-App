@@ -23,15 +23,6 @@ class ProductListViewModel(
         .cachedIn(viewModelScope)
 
 
-
-
-
-//    fun loginStatus(status: Boolean){
-//        viewModelScope.launch {
-//            userPreferences.loginStatus(status)
-//        }
-//    }
-
     val userPreferencesFlow = userPreferences.userPreferencesFlow.asLiveData()
     fun authLogin(status: Boolean, email : String ){
 

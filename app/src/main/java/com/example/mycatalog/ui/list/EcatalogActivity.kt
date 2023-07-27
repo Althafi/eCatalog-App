@@ -28,6 +28,8 @@ import com.example.mycatalog.ui.profile.ProfileActivity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
+
+//untuk membuat instance DataStore dan migrasi ke preferences dataStore
 const val USER_PREFERENCES_NAME = "user_preferences"
 
 val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME,
@@ -122,16 +124,12 @@ class EcatalogActivity  : AppCompatActivity () {
                 val intent = Intent(this, ProfileActivity::class.java).apply {
                 }
                 startActivity(intent)
-                Toast.makeText(this, "Account Profile", Toast.LENGTH_LONG).show()
                 true
             }
             R.id.action_logout -> {
                 //navigate to login
 
-//                val intent = Intent(this, LoginActivity::class.java).apply {
-//                }
-//                startActivity(intent)
-                Toast.makeText(this, "Logout", Toast.LENGTH_LONG).show()
+
                 authLogout(viewModel)
                 true
             }

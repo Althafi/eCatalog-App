@@ -62,7 +62,7 @@ class EditProfileActivity : AppCompatActivity() {
 
 
             val listPicker = listOf<String>("Galery", "Camera")
-
+            // untuk menampilkan nilai list dalam bentuk dialog
             MaterialDialog(this)
                 .title(R.string.pilih_gambar)
                 .listItems(items = listPicker) { dialog, index, text ->
@@ -101,7 +101,6 @@ class EditProfileActivity : AppCompatActivity() {
 
 
             userProfile()
-            Toast.makeText(this, "Profile Saved", Toast.LENGTH_LONG).show()
 
         }
 
