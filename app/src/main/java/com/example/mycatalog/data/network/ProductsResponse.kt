@@ -2,7 +2,7 @@ package com.example.mycatalog.data.network
 
 import com.google.gson.annotations.SerializedName
 
-
+//untuk menyimpan data item dari ProductsResponse
 data class ProductsResponse(
 
     @field:SerializedName("total")
@@ -17,6 +17,7 @@ data class ProductsResponse(
     @field:SerializedName("products")
     val products: List<ProductsItemResponse>
 )
+//untuk menyimpan data item dari ProductsItemResponse
     data class ProductsItemResponse(
 
         @field:SerializedName("discountPercentage")

@@ -50,7 +50,8 @@
     <string name="button_take_picture">take picture</string>
     <string name="take_photo">take photo</string>
     <string name="pilih_gambar">PILIH GAMBAR</string>
-
+    <string name="button_to_add_product_to_favorite">button to add product to favorite</string>
+    <string name="menu_favorite">menu favorite</string>
 
 
     <!--    &lt;!&ndash; array spinner &ndash;&gt;-->

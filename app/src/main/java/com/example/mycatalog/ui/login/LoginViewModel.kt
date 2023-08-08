@@ -16,6 +16,7 @@ class LoginViewModel(
 
     val userPreferencesFlow = userPreferences.userPreferencesFlow.asLiveData()
 
+    //function yang dipanggil untuk menerima dan menampung data parameter dari preferences menggunakan caroutine
     fun authLogin(status: Boolean, email : String ){
 
         viewModelScope.launch {

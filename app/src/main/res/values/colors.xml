@@ -14,5 +14,7 @@
     <color name="grey">#cdccda</color>
     <color name="grey_500">#B9BABA</color>
     <color name="grey_100">#DEDEDE</color>
+    <color name="md_theme_light_primary">#AE2F34</color>
+
 
 </resources>

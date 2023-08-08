@@ -1,7 +1,11 @@
 package com.example.mycatalog.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 
 //Menyimpan seluruh data dari GSON API
+@Parcelize
 data class Product(
     val discountPercentage: Double,
     val thumbnail: String,
@@ -16,4 +20,4 @@ data class Product(
     val brand: String,
     val isFavorite: Boolean = false,
     val formattedPrice: String
-)
+): Parcelable

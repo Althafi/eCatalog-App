@@ -2,7 +2,6 @@ package com.example.mycatalog.ui.form
 
 import android.Manifest
 import android.app.Activity
-import android.app.ProgressDialog.show
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -15,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import com.example.mycatalog.R
+import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.network.ApiConfig
 import com.example.mycatalog.data.network.ApiService
 import com.example.mycatalog.data.preferences.UserPreferences
@@ -65,7 +65,7 @@ class EditProfileActivity : AppCompatActivity() {
             // untuk menampilkan nilai list dalam bentuk dialog
             MaterialDialog(this)
                 .title(R.string.pilih_gambar)
-                .listItems(items = listPicker) { dialog, index, text ->
+                .listItems(items = listPicker) { _, index, _ ->
                     when (index){
                         0 -> {
                             val pickImg = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
@@ -84,7 +84,7 @@ class EditProfileActivity : AppCompatActivity() {
         ViewModelProvider(
             this,
             EditProfileViewModelFactory(
-                ProductRepository(ApiConfig.createService(ApiService::class.java)), UserPreferences(dataStore, this)
+                ProductRepository(ApiConfig.createService(ApiService::class.java),(ApiConfig.createService(ProductDao::class.java))), UserPreferences(dataStore, this)
             )
         )[EditProfileViewModel::class.java].also { viewModel = it }
         viewModel.userPreferencesFlow.observe(this){
@@ -106,12 +106,12 @@ class EditProfileActivity : AppCompatActivity() {
 
 
     }
-
+    //function yang dipanggil untuk mengambil data dari viewmodel untuk ditampilkan di view
     private fun userProfile(){
         viewModel.userProfile(fName = binding.etFullName.text.toString(), gender = binding.etGender.text.toString(),
                                 phone = binding.etPhone.text.toString())
     }
-
+    //function yang dipanggil untuk mengambil data dari viewmodel untuk ditampilkan di view
     private fun setImage(img: Uri?){
         viewModel.setImage(img)
     }

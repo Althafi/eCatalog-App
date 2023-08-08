@@ -16,6 +16,7 @@ class ProductsPagingSource (
     private val apiService : ApiService
 ) : PagingSource<Int, Product>() {
 
+    //untuk menyediakan key yang akan digunakan untuk memuat PagingSource
     override fun getRefreshKey(state: PagingState<Int, Product>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
@@ -23,18 +24,24 @@ class ProductsPagingSource (
         }
     }
 
+    //untuk mengambil lebih banyak data yang akan ditampilkan saat user melakukan scroll secara asinkron
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val pageNumber = params.key ?: STARTING_KEY
         val items = apiService.getProducts(SIZE, SKIP).toModel()
 
 
         return try {
+            //jika hasilnya berhasil
             LoadResult.Page(
+                //item dari data yang diambil
                 data = items,
+                //mengambil item di belakang halaman
                 prevKey = if (pageNumber > 0) pageNumber - 1 else null,
+                //mengambil item setelah halaman
                 nextKey = pageNumber.plus(1)
             )
         } catch (e: Exception) {
+            //jika terjadi error
             LoadResult.Error(e)
         }
     }

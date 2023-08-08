@@ -6,12 +6,16 @@ import com.example.mycatalog.data.network.ProductsResponse
 import java.text.NumberFormat
 import java.util.Locale
 
+
+//untuk nge mapping dataclass dari ProductsResponse
 fun ProductsResponse.toModel(): List<Product>{
     return this.products.map {
         it.toModel()
     }
 }
 
+
+//untuk nge mapping dataclass dari ProductsItemResponse
 fun ProductsItemResponse.toModel() =
     Product(
         discountPercentage,

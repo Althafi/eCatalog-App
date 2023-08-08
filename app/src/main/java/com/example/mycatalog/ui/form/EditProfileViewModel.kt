@@ -15,12 +15,14 @@ class EditProfileViewModel(private val repository: ProductRepository,
 ) : ViewModel(){
     val userPreferencesFlow = userPreferences.userPreferencesFlow.asLiveData()
 
+    //function yang dipanggil untuk menerima dan menampung data parameter dari preferences menggunakan caroutine
     fun userProfile(fName: String, gender: String, phone: String){
         viewModelScope.launch {
             userPreferences.userProfile(fName,gender,phone)
         }
     }
 
+    //function yang dipanggil untuk menerima dan menampung data parameter dari preferences menggunakan caroutine
     fun setImage(img: Uri?){
         viewModelScope.launch {
             userPreferences.setImage(img)

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.mycatalog.R
+import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.network.ApiConfig
 import com.example.mycatalog.data.network.ApiService
 import com.example.mycatalog.data.preferences.UserPreferences
@@ -36,7 +37,8 @@ class ProfileActivity : AppCompatActivity() {
         ViewModelProvider(
             this,
             ProfileViewModelFactory(
-                ProductRepository(ApiConfig.createService(ApiService::class.java)), UserPreferences(dataStore, this)
+                ProductRepository(ApiConfig.createService(ApiService::class.java),(ApiConfig.createService(
+                    ProductDao::class.java))), UserPreferences(dataStore, this)
             )
         )[ProfileViewModel::class.java].also { viewModel = it }
 
@@ -58,7 +60,7 @@ class ProfileActivity : AppCompatActivity() {
 
         }
 
-
+        //set button agar pindah ke EditProfileActivity saat button di klik
         binding.btnEdit.setOnClickListener{
             val intent = Intent(this, EditProfileActivity::class.java).apply {
             }

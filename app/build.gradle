@@ -100,6 +100,21 @@ dependencies {
     implementation "androidx.camera:camera-view:1.2.3"
     implementation "androidx.camera:camera-extensions:1.2.3"
 
+    //dialog
     implementation "com.afollestad.material-dialogs:core:3.3.0"
+
+    // Navigation libraries
+    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
+
+    // Room libraries
+    implementation "androidx.room:room-runtime:2.5.2"
+    implementation "androidx.room:room-ktx:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
+//    implementation "androidx.room:room-guava:2.5.2"
+
+//    implementation "androidx.room:room-coroutines:2.1.0-alpha04"
+
+//    kapt 'org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.7.0'
 
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.network.ApiConfig
 import com.example.mycatalog.data.network.ApiService
 import com.example.mycatalog.data.preferences.UserPreferences
@@ -26,16 +27,12 @@ class LoginActivity : AppCompatActivity() {
         ViewModelProvider(
             this,
             LoginViewModelFactory(
-                ProductRepository(ApiConfig.createService(ApiService::class.java)), UserPreferences(dataStore, this)
+                ProductRepository(ApiConfig.createService(ApiService::class.java),(ApiConfig.createService(ProductDao::class.java)) ), UserPreferences(dataStore, this)
             )
         )[LoginViewModel::class.java].also { viewModel = it }
 
         viewModel.userPreferencesFlow.observe(this){profile ->
             if (profile.loginStatus){
-                Toast.makeText(this, profile.loginStatus.toString(), Toast.LENGTH_LONG).show()
-
-            }else{
-
                 Toast.makeText(this, "Login Berhasil", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, EcatalogActivity::class.java).apply {
                 }
@@ -45,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        //set button agar pindah ke EcatalogActivity saat button di klik dengan kondisi yang disesuaikan
         binding.btnLogin.setOnClickListener{
 
 
@@ -66,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
+    //function yang dipanggil untuk mengambil data dari viewmodel untuk ditampilkan di view
     private fun authLogin(){
         viewModel.authLogin(true , email = binding.etEmail.text.toString())
     }

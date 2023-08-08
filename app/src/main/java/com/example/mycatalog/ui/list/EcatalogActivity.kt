@@ -16,6 +16,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.mycatalog.R
+import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.model.Product
 import com.example.mycatalog.data.network.ApiConfig
 import com.example.mycatalog.data.network.ApiService
@@ -32,6 +33,7 @@ import kotlinx.coroutines.launch
 //untuk membuat instance DataStore dan migrasi ke preferences dataStore
 const val USER_PREFERENCES_NAME = "user_preferences"
 
+//migrasi preferences dari sharedPreferences ke dataStore
 val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME,
     produceMigrations = {context ->
         listOf(SharedPreferencesMigration(context, USER_PREFERENCES_NAME))
@@ -43,6 +45,7 @@ class EcatalogActivity  : AppCompatActivity () {
     private lateinit var binding: ActivityEcatalogBinding
     private lateinit var viewModel: ProductListViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEcatalogBinding.inflate(layoutInflater)
@@ -53,21 +56,21 @@ class EcatalogActivity  : AppCompatActivity () {
         ViewModelProvider(
             this,
             ProductListViewModelFactory(
-                ProductRepository(ApiConfig.createService(ApiService::class.java)), UserPreferences(dataStore, this)
+                ProductRepository(ApiConfig.createService(ApiService::class.java),(ApiConfig.createService(
+                    ProductDao::class.java))), UserPreferences(dataStore, this)
             )
         )[ProductListViewModel::class.java].also { viewModel = it }
 
 
-        // get products
+        // untuk mengambil product item
         val items = viewModel.items
         binding.bindAdapter(items)
 
-//        loginStatus(viewModel)
 
         viewModel.userPreferencesFlow.observe(this){profile ->
             if(profile.loginStatus){
 
-            Toast.makeText(this, profile.loginStatus.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, profile.loginStatus.toString(), Toast.LENGTH_LONG).show()
 
             }else{
                 val intent = Intent(this, LoginActivity::class.java).apply {
@@ -75,15 +78,17 @@ class EcatalogActivity  : AppCompatActivity () {
                 startActivity(intent)
                 finish()
             }
-
         }
 
     }
 
+    //function yang dipanggil untuk mengambil data dari viewmodel untuk ditampilkan di view
     private fun authLogout(viewModel: ProductListViewModel){
         viewModel.authLogin(false , "")
     }
 
+
+    //untuk menghubungkan PagingDataAdapter ke view
     private fun ActivityEcatalogBinding.bindAdapter(items: Flow<PagingData<Product>>) {
 
         val adapter = ProductListAdapter(object : ProductListAdapterListener {
@@ -119,15 +124,22 @@ class EcatalogActivity  : AppCompatActivity () {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+//            R.id.action_favorites -> {
+//                //saat di klik pindah ke WishlistActivity
+//                val intent = Intent(this, WishlistActivity::class.java).apply {
+//                }
+//                startActivity(intent)
+//                true
+//            }
             R.id.action_profile -> {
-                //navigate to profile
+                //saat di klik pindah ke ProfileActivity
                 val intent = Intent(this, ProfileActivity::class.java).apply {
                 }
                 startActivity(intent)
                 true
             }
             R.id.action_logout -> {
-                //navigate to login
+                //saat di klik pindah ke LoginActivity
 
 
                 authLogout(viewModel)
