@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.afollestad.materialdialogs.utils.MDUtil.getStringArray
+import com.example.mycatalog.R
 import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.network.ApiConfig
 import com.example.mycatalog.data.network.ApiService
@@ -21,8 +23,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         ViewModelProvider(
             this,

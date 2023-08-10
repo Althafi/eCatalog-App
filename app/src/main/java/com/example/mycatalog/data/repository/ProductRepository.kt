@@ -45,6 +45,7 @@ class ProductRepository(
         return service.getProduct(id).toModel()
     }
 
+
     fun getFavoriteProducts(): Flow<PagingData<Product>>{
         return Pager(
             config = PagingConfig(pageSize = SIZE, enablePlaceholders = false),

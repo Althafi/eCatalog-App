@@ -5,7 +5,7 @@ import com.example.mycatalog.data.model.Product
 import java.text.NumberFormat
 import java.util.*
 
-
+//function untuk mengkonversi data class product ke data class product favorite entity
 fun Product.toProductFavoriteEntity()=
     ProductFavoriteEntity(
         discountPercentage = this.discountPercentage,

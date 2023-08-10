@@ -8,8 +8,10 @@ import kotlinx.parcelize.Parcelize
 
 
 const val TABLE_PRODUCTS = "product_favorite"
-@Entity(tableName = TABLE_PRODUCTS)
 
+//membuat entity dengan table name = table_products
+@Entity(tableName = TABLE_PRODUCTS)
+//isi dari table entity
 data class ProductFavoriteEntity(
 
     @ColumnInfo(name = "images")

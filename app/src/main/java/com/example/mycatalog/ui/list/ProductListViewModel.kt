@@ -17,7 +17,7 @@ class ProductListViewModel(
 
 ): ViewModel()  {
 
-
+    //variable untuk menampung data flow paging dari function getProducts yang ada di repository
     val items : Flow<PagingData<Product>> = repo
         .getProducts()
         .cachedIn(viewModelScope)

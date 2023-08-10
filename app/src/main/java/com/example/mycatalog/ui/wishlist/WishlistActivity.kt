@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mycatalog.R
 import com.example.mycatalog.data.local.entity.ProductFavoriteEntity
 import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.local.room.ProductDatabase
@@ -39,6 +40,7 @@ class WishlistActivity : AppCompatActivity() {
         binding = ActivityWishlistBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.wishlist)
 
         ViewModelProvider(
             this,
@@ -48,7 +50,7 @@ class WishlistActivity : AppCompatActivity() {
             )
         )[WishlistViewModel::class.java].also { viewModel = it }
 
-        // untuk mengambil product item
+        // untuk mengambil product itemFavorite
         val items = viewModel.itemsFavorite
         binding.bindAdapter(items)
 
@@ -57,6 +59,8 @@ class WishlistActivity : AppCompatActivity() {
 
 
     }
+
+    //untuk menghubungkan PagingDataAdapter ke view
     private fun ActivityWishlistBinding.bindAdapter(items: Flow<PagingData<Product>>) {
 
         val adapter = ProductListAdapter(object : ProductListAdapterListener {

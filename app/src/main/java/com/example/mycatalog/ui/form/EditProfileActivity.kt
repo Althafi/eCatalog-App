@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItems
 import com.example.mycatalog.R
 import com.example.mycatalog.data.local.room.ProductDao
+import com.example.mycatalog.data.model.Product
 import com.example.mycatalog.data.network.ApiConfig
 import com.example.mycatalog.data.network.ApiService
 import com.example.mycatalog.data.preferences.UserPreferences
@@ -32,9 +33,7 @@ import java.util.concurrent.ExecutorService
 
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
-
     private lateinit var viewModel: EditProfileViewModel
-    private lateinit var pickImage: FloatingActionButton
 
     private val requestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -52,12 +51,9 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = getString(R.string.edit_profile)
 
-
-
-
-
-        pickImage = binding.pickImage
+        val pickImage = binding.pickImage
         pickImage.setOnClickListener {
 
 

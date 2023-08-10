@@ -97,6 +97,7 @@ class EcatalogActivity  : AppCompatActivity () {
                 startActivity(
                     Intent(this@EcatalogActivity, DetailProductActivity::class.java)
                         .putExtra("EXTRA_ID", product.id)
+                        .putExtra("TITLE_PRODUCT", product.title)
 
                 )
             }
@@ -117,7 +118,7 @@ class EcatalogActivity  : AppCompatActivity () {
 
     }
 
-
+    // untuk menampilkan layout menu di ecatalog activity
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.catalog_menu, menu)
         return true

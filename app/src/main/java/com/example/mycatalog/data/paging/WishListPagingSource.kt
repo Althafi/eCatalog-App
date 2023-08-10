@@ -9,7 +9,7 @@ import com.example.mycatalog.data.model.Product
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
+//class untuk mengambil data dari ROOM
 class WishListPagingSource(private val productDao: ProductDao
 ): PagingSource<Int, Product>() {
     override fun getRefreshKey(state: PagingState<Int, Product>): Int? {

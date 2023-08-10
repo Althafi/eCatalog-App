@@ -7,7 +7,7 @@ import java.text.NumberFormat
 import java.util.Locale
 
 
-//untuk nge mapping dataclass dari ProductsResponse
+//untuk nge mapping dari dataclass ProductsResponse ke product
 fun ProductsResponse.toModel(): List<Product>{
     return this.products.map {
         it.toModel()
@@ -15,7 +15,7 @@ fun ProductsResponse.toModel(): List<Product>{
 }
 
 
-//untuk nge mapping dataclass dari ProductsItemResponse
+//untuk nge mapping dataclass dari dataclass ProductsResponse ke product
 fun ProductsItemResponse.toModel() =
     Product(
         discountPercentage,

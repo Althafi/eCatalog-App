@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- app name -->
-    <string name="app_name">Katalog Saya</string>
+    <string name="app_name">eCatalog</string>
 
     <!-- layout -->
     <!-- main -->
     <string name="login_form">FORMULIR MASUK</string>
     <string name="et_email">Surel</string>
     <string name="et_password">Kata Sandi</string>
+
 
     <!-- profile -->
     <string name="my_profile">Profil Saya</string>
@@ -29,15 +30,20 @@
     <string name="txt_education">PENDIDIKAN :</string>
     <string name="tv_education">Pendidikan Terakhir Kosong</string>
     <string name="strike_6">Garis</string>
+    <string name="user_profile">PROFIL</string>
+
 
     <!-- form -->
     <string name="form">UBAH PROFIL</string>
     <string name="et_fullname">Masukan Nama Lengkap</string>
     <string name="et_gender">Masukan Jenis Kelamin</string>
     <string name="et_phone">Masukan Nomor Telpon</string>
-<!--    <string name="et_child">Masukan Anak ke berapa</string>-->
-<!--    <string name="sp_education">Pilih pendidikan terakhir</string>-->
+    <string name="edit_profile">UBAH PROFILE</string>
+    <!--<string name="et_child">Masukan Anak ke berapa</string>-->
+    <!--<string name="sp_education">Pilih pendidikan terakhir</string>-->
 
+    <!--wishlist-->
+    <string name="wishlist">FAVORITE</string>
 
     <!-- buttom -->
     <string name="button_login">Masuk</string>

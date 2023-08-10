@@ -8,7 +8,7 @@ import java.util.*
 
 
 
-
+//function untuk mengkonversi/mapping data class product favorite entity ke data class product
 fun ProductFavoriteEntity.toModel() =
     Product(
         discountPercentage = this.discountPercentage,

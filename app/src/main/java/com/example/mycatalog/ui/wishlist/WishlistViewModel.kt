@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 
 class WishlistViewModel (private val repository: ProductRepository): ViewModel(){
 
+    //variable untuk menampung data flow paging dari function getProducts yang ada di repository
+
     val itemsFavorite : Flow<PagingData<Product>> = repository
         .getFavoriteProducts()
         .cachedIn(viewModelScope)

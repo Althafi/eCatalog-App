@@ -14,14 +14,14 @@ class DetailProductViewModel(private val repo: ProductRepository)
     private val _detailProducts = MutableLiveData<Product>()
     val detailProducts: LiveData<Product>
         get() = _detailProducts
-
+    //function yang dipanggil untuk menerima dan menampung data dengan parameter id dari preferences menggunakan caroutine
     fun getDetailProduct(id: Int){
         viewModelScope.launch {
             val detailProducts = repo.getProduct(id)
             setProduct(detailProducts)
         }
     }
-
+    //function yang dipanggil di dalam getdetailproduct dan menampung data dari function getFavorite yang ada di repository menggunakan caroutine
     fun setProduct(product: Product){
         viewModelScope.launch {
             repo.getFavorite(product.id).collect{
@@ -46,21 +46,6 @@ class DetailProductViewModel(private val repo: ProductRepository)
             }
         }
     }
-
-//    fun findFavorite(id: Int, listenFavorite: () -> Unit) {
-//        viewModelScope.launch {
-//            val user = db.productDao.findById(id)
-//            if (user != null) {
-//                listenFavorite()
-//                isFavorite = true
-//            }
-//        }
-//    }
-
-
-
-
-    //function yang dipanggil untuk menerima dan menampung data parameter dari preferences menggunakan caroutiny
 
 
 }

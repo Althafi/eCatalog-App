@@ -24,6 +24,7 @@ import com.example.mycatalog.databinding.ActivityDetailProductBinding
 
 class DetailProductActivity() : AppCompatActivity() {
     private lateinit var binding: ActivityDetailProductBinding
+    private lateinit var product : Product
     private val database : ProductDatabase by lazy {
         ProductDatabase.getDatabase(this)
     }
@@ -41,8 +42,8 @@ class DetailProductActivity() : AppCompatActivity() {
 
 
 
-
-
+        val titleProduct = intent.getStringExtra("TITLE_PRODUCT")
+        supportActionBar?.title = titleProduct
         val id = intent.getIntExtra("EXTRA_ID", 0 )
         viewModelDetail.getDetailProduct(id)
 

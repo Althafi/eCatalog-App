@@ -10,7 +10,7 @@ const val STARTING_KEY = 0
 const val SIZE = 30
 
 
-
+//class untuk mengambil data dari API
 class ProductsPagingSource (
 
     private val apiService : ApiService

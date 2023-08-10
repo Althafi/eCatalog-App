@@ -1,6 +1,6 @@
 <resources>
     <!-- app name -->
-    <string name="app_name">My Catalog</string>
+    <string name="app_name">eCatalog</string>
 
     <!-- layout -->
     <!-- main -->
@@ -15,7 +15,6 @@
     <string name="strike_1">Line</string>
     <string name="txt_fullname">FULL NAME :</string>
     <string name="tv_full_name">Full Name Empty</string>
-    ``
     <string name="strike_2">Line</string>
     <string name="txt_gender">GENDER :</string>
     <string name="tv_gender">Gender Empty</string>
@@ -29,14 +28,21 @@
     <string name="txt_education">EDUCATION :</string>
     <string name="tv_education">Last Education Empty</string>
     <string name="strike_6">Line</string>
+    <string name="user_profile">PROFILE</string>
+
 
     <!-- form -->
     <string name="form">EDIT PROFILE</string>
     <string name="et_fullname">Input Full Name</string>
     <string name="et_gender">Input Gender</string>
     <string name="et_phone">Input Phone Number</string>
+    <string name="edit_profile">EDIT PROFILE</string>
     <!--    <string name="et_child">Input How Many Children</string>-->
     <!--    <string name="sp_education">Select last education</string>-->
+
+    <!--wishlist-->
+    <string name="wishlist">FAVORITE</string>
+
 
 
     <!-- button -->
