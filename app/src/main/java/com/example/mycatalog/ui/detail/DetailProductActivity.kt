@@ -64,14 +64,8 @@ class DetailProductActivity() : AppCompatActivity() {
         // set product description
         binding.productDescription.text = it.description
 
-//        viewModelDetail.resultSuccessFavorite.observe(this) {
-//            binding.btnFavorite.changeIconColor(R.color.md_theme_light_primary)
-//        }
-//
-//        viewModelDetail.resultDeleteFavorite.observe(this) {
-//            binding.btnFavorite.changeIconColor(R.color.grey_500)
-//        }
-            if(it.isFavorite == true){
+
+            if(it.isFavorite){
                 binding.btnFavorite.changeIconColor(R.color.md_theme_light_primary)
             }else{
                 binding.btnFavorite.changeIconColor(R.color.grey_500)
@@ -83,9 +77,7 @@ class DetailProductActivity() : AppCompatActivity() {
         }
 
 
-//        viewModelDetail.findFavorite(item?.id ?: 0) {
-//            binding.btnFavorite.changeIconColor(R.color.md_theme_light_primary)
-//        }
+
 
     }
 }

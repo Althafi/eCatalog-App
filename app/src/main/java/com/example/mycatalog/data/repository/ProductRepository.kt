@@ -11,6 +11,7 @@ import com.example.mycatalog.data.mapper.toModel
 import com.example.mycatalog.data.mapper.toProductFavoriteEntity
 import com.example.mycatalog.data.paging.ProductsPagingSource
 import com.example.mycatalog.data.paging.SIZE
+import com.example.mycatalog.data.paging.WishListPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -21,12 +22,16 @@ class ProductRepository(
 
 ) {
 
+
+
+
     fun getFavorite(id: Int): Flow<Product?>{
         return productDao.getProductById(id).map {
             it?.toModel()
         }
 
     }
+
 
     suspend fun setFavoriteDelete(product: Product) {
         return productDao.delete(product.toProductFavoriteEntity())
@@ -38,6 +43,14 @@ class ProductRepository(
 
     suspend fun getProduct(id: Int): Product{
         return service.getProduct(id).toModel()
+    }
+
+    fun getFavoriteProducts(): Flow<PagingData<Product>>{
+        return Pager(
+            config = PagingConfig(pageSize = SIZE, enablePlaceholders = false),
+            pagingSourceFactory = {WishListPagingSource(productDao)}
+        )
+            .flow
     }
 
     //untuk menangani cache dalam memori dan meminta data saat user ada di akhir page

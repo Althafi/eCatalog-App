@@ -26,6 +26,7 @@ import com.example.mycatalog.databinding.ActivityEcatalogBinding
 import com.example.mycatalog.ui.detail.DetailProductActivity
 import com.example.mycatalog.ui.login.LoginActivity
 import com.example.mycatalog.ui.profile.ProfileActivity
+import com.example.mycatalog.ui.wishlist.WishlistActivity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -124,13 +125,13 @@ class EcatalogActivity  : AppCompatActivity () {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-//            R.id.action_favorites -> {
-//                //saat di klik pindah ke WishlistActivity
-//                val intent = Intent(this, WishlistActivity::class.java).apply {
-//                }
-//                startActivity(intent)
-//                true
-//            }
+            R.id.action_favorites -> {
+                //saat di klik pindah ke WishlistActivity
+                val intent = Intent(this, WishlistActivity::class.java).apply {
+                }
+                startActivity(intent)
+                true
+            }
             R.id.action_profile -> {
                 //saat di klik pindah ke ProfileActivity
                 val intent = Intent(this, ProfileActivity::class.java).apply {

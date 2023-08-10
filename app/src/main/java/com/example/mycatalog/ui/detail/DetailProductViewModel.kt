@@ -10,8 +10,7 @@ import kotlinx.coroutines.launch
 class DetailProductViewModel(private val repo: ProductRepository)
     : ViewModel() {
 
-    val resultSuccessFavorite = MutableLiveData<Boolean>()
-    val resultDeleteFavorite = MutableLiveData<Boolean>()
+
     private val _detailProducts = MutableLiveData<Product>()
     val detailProducts: LiveData<Product>
         get() = _detailProducts
@@ -19,7 +18,6 @@ class DetailProductViewModel(private val repo: ProductRepository)
     fun getDetailProduct(id: Int){
         viewModelScope.launch {
             val detailProducts = repo.getProduct(id)
-//            _detailProducts.postValue(detailProducts)
             setProduct(detailProducts)
         }
     }

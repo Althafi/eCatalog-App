@@ -2,21 +2,14 @@ package com.example.mycatalog.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.mycatalog.data.local.entity.ProductFavoriteEntity
+import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.mapper.toModel
 import com.example.mycatalog.data.model.Product
-import com.example.mycatalog.data.network.ApiService
-
-const val STARTING_KEY = 0
-const val SIZE = 30
 
 
-
-class ProductsPagingSource (
-
-    private val apiService : ApiService
-    ) : PagingSource<Int, Product>() {
-
-    //untuk menyediakan key yang akan digunakan untuk memuat PagingSource
+class WishListPagingSource(private val productDao: ProductDao
+): PagingSource<Int, Product>() {
     override fun getRefreshKey(state: PagingState<Int, Product>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
@@ -24,16 +17,13 @@ class ProductsPagingSource (
         }
     }
 
-    //untuk mengambil lebih banyak data yang akan ditampilkan saat user melakukan scroll secara asinkron
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val pageNumber = params.key ?: STARTING_KEY
         val skip = pageNumber * SIZE
-        val items = apiService.getProducts(SIZE, skip).toModel()
+        val items = productDao.loadAll(skip, SIZE).map { it.toModel() }
 
 
         return try {
-
-
             //jika hasilnya berhasil
             LoadResult.Page(
                 //item dari data yang diambil
@@ -46,6 +36,6 @@ class ProductsPagingSource (
         } catch (e: Exception) {
             //jika terjadi error
             LoadResult.Error(e)
-        }
-    }
+        }    }
+
 }
