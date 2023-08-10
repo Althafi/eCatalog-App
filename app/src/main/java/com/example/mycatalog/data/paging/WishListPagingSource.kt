@@ -6,6 +6,8 @@ import com.example.mycatalog.data.local.entity.ProductFavoriteEntity
 import com.example.mycatalog.data.local.room.ProductDao
 import com.example.mycatalog.data.mapper.toModel
 import com.example.mycatalog.data.model.Product
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 class WishListPagingSource(private val productDao: ProductDao
@@ -20,7 +22,9 @@ class WishListPagingSource(private val productDao: ProductDao
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Product> {
         val pageNumber = params.key ?: STARTING_KEY
         val skip = pageNumber * SIZE
-        val items = productDao.loadAll(skip, SIZE).map { it.toModel() }
+        val items = withContext(Dispatchers.IO){
+            productDao.loadAll(skip, SIZE).map { it.toModel() }
+        }
 
 
         return try {

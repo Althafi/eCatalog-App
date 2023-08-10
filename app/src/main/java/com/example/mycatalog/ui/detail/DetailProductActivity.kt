@@ -1,8 +1,10 @@
 package com.example.mycatalog.ui.detail
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.annotation.ColorRes
@@ -30,6 +32,7 @@ class DetailProductActivity() : AppCompatActivity() {
         ))
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailProductBinding.inflate(layoutInflater)
@@ -79,6 +82,15 @@ class DetailProductActivity() : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
 fun ImageButton.changeIconColor(@ColorRes color: Int) {

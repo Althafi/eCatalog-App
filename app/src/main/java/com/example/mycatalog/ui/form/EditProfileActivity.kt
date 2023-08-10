@@ -94,13 +94,14 @@ class EditProfileActivity : AppCompatActivity() {
 
 
         binding.btnSave.setOnClickListener{
-            val intent = Intent(this, ProfileActivity::class.java).apply {
+            userProfile()
+            Intent(this, ProfileActivity::class.java).apply {
 
-            startActivity(this)
+                startActivity(this)
+                finish()
             }
 
 
-            userProfile()
 
         }
 

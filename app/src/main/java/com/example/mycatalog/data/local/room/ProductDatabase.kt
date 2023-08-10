@@ -22,7 +22,6 @@ abstract class ProductDatabase: RoomDatabase() {
                     "item_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .allowMainThreadQueries()
                     .build()
                 INSTANCE=instance
                 return instance
