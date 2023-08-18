@@ -3,6 +3,7 @@ package com.example.mycatalog.ui.list
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -27,6 +28,8 @@ import com.example.mycatalog.ui.detail.DetailProductActivity
 import com.example.mycatalog.ui.login.LoginActivity
 import com.example.mycatalog.ui.profile.ProfileActivity
 import com.example.mycatalog.ui.wishlist.WishlistActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -51,6 +54,20 @@ class EcatalogActivity  : AppCompatActivity () {
         super.onCreate(savedInstanceState)
         binding = ActivityEcatalogBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val TOKEN = "MY_TOKEN"
+        val TAG = "FIREBASE_MESSAGE"
+
+        //FireBase token code from documentation -
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            val token = task.result
+            Log.e(TOKEN, "" + token)
+        })
 
 
 
