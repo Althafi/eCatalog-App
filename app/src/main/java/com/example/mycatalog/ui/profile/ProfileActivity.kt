@@ -69,6 +69,7 @@ class ProfileActivity : AppCompatActivity() {
             val intent = Intent(this, EditProfileActivity::class.java).apply {
             }
             startActivity(intent)
+            finish()
         }
     }
 

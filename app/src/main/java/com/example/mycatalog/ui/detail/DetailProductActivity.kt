@@ -9,9 +9,11 @@ import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import com.denzcoskun.imageslider.models.SlideModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.example.mycatalog.R
 import com.example.mycatalog.data.local.entity.ProductFavoriteEntity
 import com.example.mycatalog.data.local.room.ProductDao
@@ -49,24 +51,25 @@ class DetailProductActivity() : AppCompatActivity() {
 
         viewModelDetail.detailProducts.observe(this){
 
+            product = it
+            // set image list
+            val imageList = ArrayList<SlideModel>()
+            product.images.forEach {url ->
+                imageList.add(SlideModel(imageUrl = url))
+            }
+            binding.productImages.setImageList(imageList, scaleType = ScaleTypes.FIT)
 
-        Glide.with(this)
-            .load(it.images[0])
-            .placeholder(R.drawable.outline_downloading_24)
-            .transform(CenterInside(), RoundedCorners(24))
-            .into(binding.productImage)
+            // set product name
+            binding.productName.text = it.title
 
-        // set product name
-        binding.productName.text = it.title
+            // set product price
+            binding.productPrice.text = it.formattedPrice
 
-        // set product price
-        binding.productPrice.text = it.formattedPrice
+            // set product rating
+            binding.productRating.rating = it.rating.toFloat()
 
-        // set product rating
-        binding.productRating.rating = it.rating.toFloat()
-
-        // set product description
-        binding.productDescription.text = it.description
+            // set product description
+            binding.productDescription.text = it.description
 
 
             if(it.isFavorite){
@@ -93,6 +96,8 @@ class DetailProductActivity() : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }
 fun ImageButton.changeIconColor(@ColorRes color: Int) {
     imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this.context, color))

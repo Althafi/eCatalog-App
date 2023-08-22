@@ -47,7 +47,7 @@
 
     <!-- button -->
     <string name="button_login">Login</string>
-    <string name="button_form">Edit</string>
+    <string name="button_form">Edit Profile</string>
     <string name="button_save">Save</string>
     <string name="profile">profile</string>
     <string name="logout">logout</string>
