@@ -1,10 +1,7 @@
 package com.example.mycatalog.data.local.room
 
-import androidx.lifecycle.LiveData
-import androidx.room.*
+    import androidx.room.*
 import com.example.mycatalog.data.local.entity.*
-import com.example.mycatalog.data.paging.SIZE
-import com.example.mycatalog.data.paging.STARTING_KEY
 import kotlinx.coroutines.flow.Flow
 
 //anotasi untuk berinteraksi ke database aplikasi
