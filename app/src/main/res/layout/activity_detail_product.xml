@@ -27,7 +27,7 @@
             android:layout_height="200dp"
             app:iss_auto_cycle="true"
             app:iss_delay="1000"
-            app:iss_error_image="@drawable/error"
+            app:iss_error_image="@drawable/default_error"
             app:iss_period="1000"
             app:iss_placeholder="@drawable/outline_account_circle_24"/>
 
